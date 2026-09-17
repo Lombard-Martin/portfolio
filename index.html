@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Martin Lombard — Portfolio BTS Bioqualité</title>
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent: #10b981;
+            --accent-hover: #059669;
+            --border: #334155;
+            --font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: var(--font-family);
+            line-height: 1.6;
+            padding-bottom: 60px;
+        }
+
+        /* Layout & Container */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header / Navbar */
+        header {
+            position: sticky;
+            top: 0;
+            background-color: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid var(--border);
+            z-index: 100;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 1.2rem;
+            letter-spacing: -0.5px;
+            color: var(--text-main);
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 80px 0 60px 0;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            background-color: rgba(16, 185, 129, 0.1);
+            color: var(--accent);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 16px;
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            line-height: 1.2;
+            margin-bottom: 12px;
+            font-weight: 800;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 24px;
+            max-width: 600px;
+        }
+
+        .location {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Sections */
+        section {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            margin-bottom: 24px;
+            position: relative;
+            display: inline-block;
+        }
+
+        /* Timeline / Experience Cards */
+        .timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 24px;
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            border-color: var(--accent);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .card-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .card-company {
+            color: var(--accent);
+            font-weight: 500;
+        }
+
+        .card-date {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+
+        .card-body ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .card-body li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 6px;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .card-body li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        /* Skills Grid */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+        }
+
+        .skill-item {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border);
+            padding: 16px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        /* Contact Section */
+        .contact-box {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 32px;
+            text-align: center;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--accent);
+            color: #000;
+            padding: 12px 24px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 16px;
+            transition: background-color 0.2s ease;
+        }
+
+        .btn:hover {
+            background-color: var(--accent-hover);
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            h1 { font-size: 2.1rem; }
+            .card-header { flex-direction: column; }
+            .nav-links { display: none; } /* Pour garder une interface épurée sur mobile */
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">Martin <span>Lombard</span></div>
+                <ul class="nav-links">
+                    <li><a href="#about">À propos</a></li>
+                    <li><a href="#experience">Expériences</a></li>
+                    <li><a href="#education">Formation</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Hero Section -->
+        <section class="hero" id="about">
+            <span class="badge">Étudiant BTS Bioqualité — 19 ans</span>
+            <h1>Spécialiste de la conformité et du contrôle qualité agroalimentaire.</h1>
+            <p class="subtitle">
+                Fort d'un parcours axé sur la production agroalimentaire et le contrôle de la qualité, j'applique les normes les plus strictes pour garantir l'excellence des produits.
+            </p>
+            <div class="location">
+                📍 Nîmes, France
+            </div>
+        </section>
+
+        <!-- Expérience Professionnelle -->
+        <section id="experience">
+            <h2>Expérience Professionnelle</h2>
+            <div class="timeline">
+                
+                <div class="card">
+                    <div class="card-header">
+                        <div>
+                            <div class="card-title">Technicien Qualité (Alternance)</div>
+                            <div class="card-company">Huile Cauvin — Production d'huile d'olive</div>
+                        </div>
+                        <div class="card-date">2026 (En cours)</div>
+                    </div>
+                    <div class="card-body">
+                        <ul>
+                            <li>Analyse rigoureuse de la matière première à la réception.</li>
+                            <li>Vérification systématique de la conformité des produits finis.</li>
+                            <li>Gestion et suivi des non-conformités en cours de production.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div>
+                            <div class="card-title">Stage Analyse d'Eau & Détection</div>
+                            <div class="card-company">Saur</div>
+                        </div>
+                        <div class="card-date">Stage</div>
+                    </div>
+                    <div class="card-body">
+                        <ul>
+                            <li>Réalisation d'analyses physico-chimiques de la qualité de l'eau.</li>
+                            <li>Recherche de fuites et interventions sur le réseau.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div>
+                            <div class="card-title">Opérateur de Production Agroalimentaire</div>
+                            <div class="card-company">Pôle Agroalimentaire de l'Ouest Guyanais</div>
+                        </div>
+                        <div class="card-date">Projets de Production</div>
+                    </div>
+                    <div class="card-body">
+                        <ul>
+                            <li>Fabrication artisanale de pâtes fraîches italiennes maison.</li>
+                            <li>Extraction et transformation de jus locaux et exotiques (mangue, maracudja, papaye).</li>
+                            <li>Respect strict des règles d'hygiène et de traçabilité agroalimentaire.</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Formation -->
+        <section id="education">
+            <h2>Formation</h2>
+            <div class="timeline">
+                
+                <div class="card">
+                    <div class="card-header">
+                        <div>
+                            <div class="card-title">BTS Bioqualité (en alternance)</div>
+                            <div class="card-company">Qualité, hygiène, sécurité et environnement</div>
+                        </div>
+                        <div class="card-date">2 ans</div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div>
+                            <div class="card-title">Bac Pro PIPAC</div>
+                            <div class="card-company">Procédés de la Maîtrise de l'Eau et des Nuisances / Agroalimentaire</div>
+                        </div>
+                        <div class="card-date">2022 — 2026</div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Compétences -->
+        <section id="skills">
+            <h2>Compétences Clés</h2>
+            <div class="skills-grid">
+                <div class="skill-item">Analyse physico-chimique</div>
+                <div class="skill-item">Gestion des non-conformités</div>
+                <div class="skill-item">Contrôle matières premières</div>
+                <div class="skill-item">Normes d'hygiène & Traçabilité</div>
+                <div class="skill-item">Transformation agroalimentaire</div>
+                <div class="skill-item">Analyse de l'eau</div>
+            </div>
+        </section>
+
+        <!-- Contact -->
+        <section id="contact">
+            <div class="contact-box">
+                <h2>Me contacter</h2>
+                <p style="color: var(--text-muted);">Disponible pour échanger sur mes projets en bioqualité ou mes opportunités futures.</p>
+                <a href="mailto:martin.lombard@email.com" class="btn">Envoyer un e-mail</a>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // JS Minimal pour ajouter une classe 'active' lors du scroll si besoin
+        document.addEventListener('DOMContentLoaded', () => {
+            const links = document.querySelectorAll('.nav-links a');
+            
+            links.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    links.forEach(l => l.style.color = 'var(--text-muted)');
+                    e.target.style.color = 'var(--accent)';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
