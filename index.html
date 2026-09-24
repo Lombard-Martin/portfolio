@@ -1,473 +1,641 @@
 <!DOCTYPE html>
-<html lang="fr" class="dark">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Martin Lombard — Portfolio BTS Bioqualité</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        project: {
-                            DEFAULT: '#3b82f6', // Bright Blue
-                            light: '#60a5fa',
-                            glow: 'rgba(59, 130, 246, 0.25)',
-                            bg: 'rgba(59, 130, 246, 0.1)'
-                        },
-                        norm: {
-                            DEFAULT: '#10b981', // Emerald / Green
-                            light: '#34d399',
-                            glow: 'rgba(16, 185, 129, 0.25)',
-                            bg: 'rgba(16, 185, 129, 0.1)'
-                        },
-                        edu: {
-                            DEFAULT: '#f59e0b', // Amber / Gold
-                            light: '#fbbf24',
-                            glow: 'rgba(245, 158, 11, 0.25)',
-                            bg: 'rgba(245, 158, 11, 0.1)'
-                        }
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'system-ui', 'sans-serif'],
-                    }
-                }
-            }
-        }
-    </script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        /* Custom Smooth Scroll & Custom Scrollbar */
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --border: #334155;
+            --font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            
+            /* Codes Couleurs */
+            --color-projet: #3b82f6;       /* Bleu */
+            --color-norme: #10b981;        /* Émeraude */
+            --color-etudes: #f59e0b;       /* Ambre/Orange */
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
         html {
             scroll-behavior: smooth;
         }
-        ::-webkit-scrollbar {
-            width: 8px;
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: var(--font-family);
+            line-height: 1.6;
+            padding-bottom: 60px;
         }
-        ::-webkit-scrollbar-track {
-            background: #0f172a;
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
-        ::-webkit-scrollbar-thumb {
-            background: #334155;
+
+        /* Header */
+        header {
+            position: sticky;
+            top: 0;
+            background-color: rgba(15, 23, 42, 0.9);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid var(--border);
+            z-index: 100;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 1.2rem;
+            letter-spacing: -0.5px;
+        }
+
+        .logo span {
+            color: var(--color-norme);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-main);
+        }
+
+        /* Hero */
+        .hero {
+            padding: 60px 0 40px 0;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            background-color: rgba(16, 185, 129, 0.1);
+            color: var(--color-norme);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 16px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            line-height: 1.2;
+            margin-bottom: 12px;
+            font-weight: 800;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-bottom: 16px;
+        }
+
+        .location {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Filtres */
+        .filter-container {
+            display: flex;
+            gap: 10px;
+            margin: 30px 0 10px 0;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            color: #fff;
+        }
+
+        .filter-btn[data-filter="all"].active {
+            background-color: #334155;
+            border-color: #64748b;
+        }
+
+        .filter-btn[data-filter="projet"].active {
+            background-color: var(--color-projet);
+            border-color: var(--color-projet);
+        }
+
+        .filter-btn[data-filter="norme"].active {
+            background-color: var(--color-norme);
+            border-color: var(--color-norme);
+        }
+
+        .filter-btn[data-filter="etudes"].active {
+            background-color: var(--color-etudes);
+            border-color: var(--color-etudes);
+        }
+
+        /* Légende */
+        .legend {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            font-size: 0.85rem;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--text-muted);
+        }
+
+        .legend-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+
+        /* TIMELINE VERTICALE */
+        .timeline-section {
+            position: relative;
+            padding: 20px 0;
+        }
+
+        .timeline-line {
+            position: absolute;
+            left: 20px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background-color: var(--border);
+            z-index: 1;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 60px;
+            margin-bottom: 40px;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .timeline-item.hidden {
+            display: none;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 11px;
+            top: 24px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: var(--bg-color);
+            border: 3px solid #fff;
+            z-index: 2;
+        }
+
+        /* Carte de contenu */
+        .card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Image dans les cartes */
+        .card-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 1px solid var(--border);
+            display: block;
+        }
+
+        .card-content {
+            padding: 24px;
+        }
+
+        /* Variations selon la catégorie */
+        .type-projet .timeline-dot { border-color: var(--color-projet); }
+        .type-projet .card-tag { background: rgba(59, 130, 246, 0.15); color: #60a5fa; }
+        .type-projet:hover .card { border-color: var(--color-projet); }
+
+        .type-norme .timeline-dot { border-color: var(--color-norme); }
+        .type-norme .card-tag { background: rgba(16, 185, 129, 0.15); color: #34d399; }
+        .type-norme:hover .card { border-color: var(--color-norme); }
+
+        .type-etudes .timeline-dot { border-color: var(--color-etudes); }
+        .type-etudes .card-tag { background: rgba(245, 158, 11, 0.15); color: #fbbf24; }
+        .type-etudes:hover .card { border-color: var(--color-etudes); }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .card-tag {
+            display: inline-block;
+            padding: 2px 10px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+
+        .card-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .card-company {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        .card-date {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2px 8px;
             border-radius: 4px;
         }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #475569;
+
+        .card-body ul {
+            list-style: none;
+            padding-left: 0;
+            margin-top: 10px;
         }
-        
-        .timeline-card {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+        .card-body li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 6px;
+            color: var(--text-muted);
+            font-size: 0.95rem;
         }
-        
-        .filter-btn.active {
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+
+        .card-body li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        /* Sections annexes */
+        section {
+            padding: 40px 0;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+        }
+
+        .skill-item {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border);
+            padding: 16px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        .contact-box {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 32px;
+            text-align: center;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--color-norme);
+            color: #000;
+            padding: 12px 24px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 16px;
+            transition: background-color 0.2s ease;
+        }
+
+        .btn:hover {
+            background-color: #059669;
+        }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 2rem; }
+            .timeline-line { left: 15px; }
+            .timeline-dot { left: 6px; }
+            .timeline-item { padding-left: 40px; }
+            .nav-links { display: none; }
         }
     </style>
 </head>
-<body class="bg-slate-950 text-slate-100 font-sans antialiased min-h-screen selection:bg-emerald-500 selection:text-slate-950">
+<body>
 
-    <!-- Sticky Navigation -->
-    <header class="sticky top-0 z-50 backdrop-blur-md bg-slate-950/80 border-b border-slate-800/80">
-        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-            <a href="#" class="group flex items-center space-x-2 font-bold text-lg tracking-tight">
-                <span class="bg-gradient-to-r from-emerald-400 to-blue-500 bg-clip-text text-transparent group-hover:opacity-80 transition-opacity">Martin Lombard</span>
-                <span class="text-xs px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-medium">BTS Bioqualité</span>
-            </a>
-            
-            <nav class="hidden md:flex items-center space-x-6 text-sm font-medium text-slate-400">
-                <a href="#about" class="hover:text-emerald-400 transition-colors">Profil</a>
-                <a href="#timeline" class="hover:text-emerald-400 transition-colors">Parcours & Projets</a>
-                <a href="#legend" class="hover:text-emerald-400 transition-colors">Légende</a>
-                <a href="#contact" class="hover:text-emerald-400 transition-colors">Contact</a>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">Martin <span>Lombard</span></div>
+                <ul class="nav-links">
+                    <li><a href="#about">À propos</a></li>
+                    <li><a href="#timeline">Parcours</a></li>
+                    <li><a href="#skills">Compétences</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
             </nav>
-
-            <a href="#contact" class="inline-flex items-center justify-center px-4 py-2 text-xs font-semibold rounded-lg bg-emerald-500 hover:bg-emerald-400 text-slate-950 transition-all shadow-lg shadow-emerald-500/20">
-                Me contacter
-            </a>
         </div>
     </header>
 
-    <!-- Hero Profile Section -->
-    <section id="about" class="pt-12 pb-10 border-b border-slate-900 bg-gradient-to-b from-slate-900/50 to-slate-950">
-        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
-                <div class="space-y-4 max-w-2xl">
-                    <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-slate-800/80 border border-slate-700 text-xs font-medium text-slate-300">
-                        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                        <span>19 ans • Nîmes, France</span>
-                    </div>
-                    
-                    <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white leading-tight">
-                        Étudiant en <span class="bg-gradient-to-r from-emerald-400 via-teal-300 to-blue-500 bg-clip-text text-transparent">BTS Bioqualité</span>
-                    </h1>
-                    
-                    <p class="text-slate-400 text-base sm:text-lg leading-relaxed">
-                        Spécialisé dans la qualité, la conformité agroalimentaire et le contrôle de laboratoire. Mon objectif : garantir la sécurité des procédés et l'excellence des produits, de la matière première au produit fini.
-                    </p>
-                </div>
-
-                <!-- Quick Stats / Badges Card -->
-                <div class="w-full md:w-auto min-w-[280px] p-5 rounded-2xl bg-slate-900/90 border border-slate-800/80 backdrop-blur-sm space-y-3 shadow-xl">
-                    <div class="text-xs font-bold uppercase tracking-wider text-slate-400 border-b border-slate-800 pb-2">Résumé Synthétique</div>
-                    
-                    <div class="flex items-center space-x-3 text-sm">
-                        <span class="w-3 h-3 rounded-full bg-project shadow-[0_0_8px_rgba(59,130,246,0.6)]"></span>
-                        <span class="text-slate-300 font-medium">Projets Pro & Perso :</span>
-                        <span class="text-slate-400 ml-auto font-bold">4</span>
-                    </div>
-                    
-                    <div class="flex items-center space-x-3 text-sm">
-                        <span class="w-3 h-3 rounded-full bg-norm shadow-[0_0_8px_rgba(16,185,129,0.6)]"></span>
-                        <span class="text-slate-300 font-medium">Pôle Normes & Qualité :</span>
-                        <span class="text-slate-400 ml-auto font-bold">Actif</span>
-                    </div>
-                    
-                    <div class="flex items-center space-x-3 text-sm">
-                        <span class="w-3 h-3 rounded-full bg-edu shadow-[0_0_8px_rgba(245,158,11,0.6)]"></span>
-                        <span class="text-slate-300 font-medium">Diplômes préparés :</span>
-                        <span class="text-slate-400 ml-auto font-bold">Bac Pro + BTS</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Filter and Legend Bar -->
-    <section id="legend" class="py-6 bg-slate-950/60 sticky top-16 z-40 backdrop-blur-md border-b border-slate-800/50">
-        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
-                
-                <!-- Category Filters -->
-                <div class="flex flex-wrap items-center gap-2">
-                    <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider mr-2">Filtrer :</span>
-                    
-                    <button onclick="filterTimeline('all')" id="btn-all" class="filter-btn active text-xs font-medium px-3.5 py-1.5 rounded-lg border border-slate-700 bg-slate-800 text-white hover:bg-slate-700 transition-all">
-                        Tous (6)
-                    </button>
-                    
-                    <button onclick="filterTimeline('project')" id="btn-project" class="filter-btn text-xs font-medium px-3.5 py-1.5 rounded-lg border border-blue-500/30 bg-project-bg text-blue-400 hover:bg-blue-500/20 transition-all">
-                        🔵 Projets & Expériences
-                    </button>
-                    
-                    <button onclick="filterTimeline('norm')" id="btn-norm" class="filter-btn text-xs font-medium px-3.5 py-1.5 rounded-lg border border-emerald-500/30 bg-norm-bg text-emerald-400 hover:bg-emerald-500/20 transition-all">
-                        🟢 Normes & Qualité
-                    </button>
-                    
-                    <button onclick="filterTimeline('edu')" id="btn-edu" class="filter-btn text-xs font-medium px-3.5 py-1.5 rounded-lg border border-amber-500/30 bg-edu-bg text-amber-400 hover:bg-amber-500/20 transition-all">
-                        🟠 Études & Formations
-                    </button>
-                </div>
-
-                <!-- Legend Indicator -->
-                <div class="hidden lg:flex items-center space-x-4 text-xs text-slate-400">
-                    <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-project"></span> Projets</span>
-                    <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-norm"></span> Normes</span>
-                    <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-edu"></span> Études</span>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- Timeline Section -->
-    <section id="timeline" class="py-16">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            
-            <!-- Timeline Container -->
-            <div class="relative wrap overflow-hidden">
-                
-                <!-- Central Vertical Axis Line -->
-                <div class="absolute border-opacity-20 border-slate-700 h-full border-2 left-4 md:left-1/2 transform md:-translate-x-1/2 rounded-full"></div>
-
-                <!-- ITEM 1: BTS QUALITÉ (ALTERNANCE - HUILE CAUVIN) [PROJET & EXP] -->
-                <div class="timeline-item category-project mb-12 flex flex-col md:flex-row items-center w-full">
-                    <!-- Date badge for Mobile -->
-                    <div class="md:hidden flex items-center self-start mb-2 ml-10">
-                        <span class="text-xs font-bold px-2.5 py-1 rounded bg-blue-500/20 text-blue-400 border border-blue-500/30">2024 — 2026 (En cours)</span>
-                    </div>
-
-                    <!-- Left Container (Desktop) -->
-                    <div class="hidden md:block w-1/2 pr-8 text-right">
-                        <span class="text-xs font-bold px-3 py-1 rounded-full bg-blue-500/10 text-blue-400 border border-blue-500/30 inline-block shadow-sm">Alternance 2 ans</span>
-                        <div class="text-slate-400 text-sm mt-1">Huile Cauvin • Nîmes</div>
-                    </div>
-
-                    <!-- Center Node Dot -->
-                    <div class="z-20 flex items-center order-1 bg-slate-950 w-8 h-8 rounded-full border-2 border-project shadow-[0_0_15px_rgba(59,130,246,0.8)] self-start md:self-center">
-                        <div class="w-3 h-3 mx-auto bg-project rounded-full"></div>
-                    </div>
-
-                    <!-- Right Card Container -->
-                    <div class="order-1 md:w-1/2 pl-10 md:pl-8 w-full -mt-8 md:mt-0">
-                        <div class="timeline-card bg-slate-900/90 p-6 rounded-2xl border border-blue-500/30 hover:border-blue-500/70 shadow-lg shadow-blue-500/5 group">
-                            <div class="flex items-center justify-between mb-2">
-                                <span class="px-2.5 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-project-bg text-blue-400 border border-blue-500/20">Projet Expérience</span>
-                                <span class="text-xs text-slate-400 font-mono">2024 - 2026</span>
-                            </div>
-                            <h3 class="text-xl font-bold text-white group-hover:text-blue-400 transition-colors">Technicien Qualité — Huile Cauvin</h3>
-                            <p class="text-xs text-blue-300 font-medium mb-3">Production d'Huile d'Olive</p>
-                            <ul class="text-slate-300 text-sm space-y-2 list-disc list-inside marker:text-blue-400">
-                                <li>Analyse complète de la matière première végétale à la réception.</li>
-                                <li>Vérification stricte des paramètres de conformité du produit fini.</li>
-                                <li>Gestion active des fiches de non-conformité et suivi correctif.</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- ITEM 2: NORMES & QUALITÉ - HUILE CAUVIN (NORMES) -->
-                <div class="timeline-item category-norm mb-12 flex flex-col md:flex-row items-center w-full">
-                    <!-- Date badge for Mobile -->
-                    <div class="md:hidden flex items-center self-start mb-2 ml-10">
-                        <span class="text-xs font-bold px-2.5 py-1 rounded bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">Mise en Pratique Qualité</span>
-                    </div>
-
-                    <!-- Left Card Container (Desktop) -->
-                    <div class="order-1 md:w-1/2 pr-0 md:pr-8 pl-10 md:pl-0 w-full -mt-8 md:mt-0 md:text-right">
-                        <div class="timeline-card bg-slate-900/90 p-6 rounded-2xl border border-emerald-500/30 hover:border-emerald-500/70 shadow-lg shadow-emerald-500/5 group">
-                            <div class="flex items-center justify-between mb-2 md:flex-row-reverse">
-                                <span class="px-2.5 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-norm-bg text-emerald-400 border border-emerald-500/20">Normes & Sécurité</span>
-                                <span class="text-xs text-slate-400 font-mono">Contrôle Qualité</span>
-                            </div>
-                            <h3 class="text-xl font-bold text-white group-hover:text-emerald-400 transition-colors">Normes & Traçabilité Huile d'Olive</h3>
-                            <p class="text-xs text-emerald-300 font-medium mb-3">Mise en application des protocoles sanitaires</p>
-                            <p class="text-slate-300 text-sm leading-relaxed">
-                                Application rigoureuse des normes de sécurité alimentaire (HACCP) appliquées à la filière oléicole. Contrôle organoleptique et physico-chimique pour la validation des lots.
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- Center Node Dot -->
-                    <div class="z-20 flex items-center order-1 bg-slate-950 w-8 h-8 rounded-full border-2 border-norm shadow-[0_0_15px_rgba(16,185,129,0.8)] self-start md:self-center">
-                        <div class="w-3 h-3 mx-auto bg-norm rounded-full"></div>
-                    </div>
-
-                    <!-- Right Container (Desktop) -->
-                    <div class="hidden md:block w-1/2 pl-8 text-left">
-                        <span class="text-xs font-bold px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 inline-block">Procédures HACCP</span>
-                        <div class="text-slate-400 text-sm mt-1">Normes Agroalimentaires</div>
-                    </div>
-                </div>
-
-                <!-- ITEM 3: BTS BIOQUALITÉ (ÉTUDES) -->
-                <div class="timeline-item category-edu mb-12 flex flex-col md:flex-row items-center w-full">
-                    <div class="md:hidden flex items-center self-start mb-2 ml-10">
-                        <span class="text-xs font-bold px-2.5 py-1 rounded bg-amber-500/20 text-amber-400 border border-amber-500/30">2024 — 2026</span>
-                    </div>
-
-                    <div class="hidden md:block w-1/2 pr-8 text-right">
-                        <span class="text-xs font-bold px-3 py-1 rounded-full bg-amber-500/10 text-amber-400 border border-amber-500/30 inline-block">Diplôme d'État</span>
-                        <div class="text-slate-400 text-sm mt-1">Enseignement Supérieur</div>
-                    </div>
-
-                    <div class="z-20 flex items-center order-1 bg-slate-950 w-8 h-8 rounded-full border-2 border-edu shadow-[0_0_15px_rgba(245,158,11,0.8)] self-start md:self-center">
-                        <div class="w-3 h-3 mx-auto bg-edu rounded-full"></div>
-                    </div>
-
-                    <div class="order-1 md:w-1/2 pl-10 md:pl-8 w-full -mt-8 md:mt-0">
-                        <div class="timeline-card bg-slate-900/90 p-6 rounded-2xl border border-amber-500/30 hover:border-amber-500/70 shadow-lg shadow-amber-500/5 group">
-                            <div class="flex items-center justify-between mb-2">
-                                <span class="px-2.5 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-edu-bg text-amber-400 border border-amber-500/20">Études</span>
-                                <span class="text-xs text-slate-400 font-mono">2024 - 2026</span>
-                            </div>
-                            <h3 class="text-xl font-bold text-white group-hover:text-amber-400 transition-colors">BTS Bioqualité</h3>
-                            <p class="text-xs text-amber-300 font-medium mb-3">Formation Supérieure sur 2 ans</p>
-                            <p class="text-slate-300 text-sm leading-relaxed">
-                                Expertise en bio-industries (agroalimentaire, santé, environnement). Apprentissage de la gestion de la qualité, de la maîtrise des risques microbiologiques et physico-chimiques.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- ITEM 4: PRODUCTION JUS EXOTIQUES & PÂTES (PROJET PERSO & GUYANE) -->
-                <div class="timeline-item category-project mb-12 flex flex-col md:flex-row items-center w-full">
-                    <div class="md:hidden flex items-center self-start mb-2 ml-10">
-                        <span class="text-xs font-bold px-2.5 py-1 rounded bg-blue-500/20 text-blue-400 border border-blue-500/30">Pôle Agroalimentaire</span>
-                    </div>
-
-                    <div class="order-1 md:w-1/2 pr-0 md:pr-8 pl-10 md:pl-0 w-full -mt-8 md:mt-0 md:text-right">
-                        <div class="timeline-card bg-slate-900/90 p-6 rounded-2xl border border-blue-500/30 hover:border-blue-500/70 shadow-lg shadow-blue-500/5 group">
-                            <div class="flex items-center justify-between mb-2 md:flex-row-reverse">
-                                <span class="px-2.5 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-project-bg text-blue-400 border border-blue-500/20">Projet Production</span>
-                                <span class="text-xs text-slate-400 font-mono">Guyane</span>
-                            </div>
-                            <h3 class="text-xl font-bold text-white group-hover:text-blue-400 transition-colors">Production Agroalimentaire & Artisanale</h3>
-                            <p class="text-xs text-blue-300 font-medium mb-3">Pôle Agroalimentaire de l'Ouest Guyanais</p>
-                            <ul class="text-slate-300 text-sm space-y-2 list-disc list-inside marker:text-blue-400 md:list-none">
-                                <li>Fabrication artisanale de <strong class="text-white">pâtes fraîches italiennes maison</strong>.</li>
-                                <li>Transformation de fruits locaux en jus exotiques (<em class="text-slate-200">mangue, maracudja, papaye</em>).</li>
-                                <li>Maîtrise des procédés d'extraction, de stabilisation et de conditionnement.</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="z-20 flex items-center order-1 bg-slate-950 w-8 h-8 rounded-full border-2 border-project shadow-[0_0_15px_rgba(59,130,246,0.8)] self-start md:self-center">
-                        <div class="w-3 h-3 mx-auto bg-project rounded-full"></div>
-                    </div>
-
-                    <div class="hidden md:block w-1/2 pl-8 text-left">
-                        <span class="text-xs font-bold px-3 py-1 rounded-full bg-blue-500/10 text-blue-400 border border-blue-500/30 inline-block">Transformations Fruitières</span>
-                        <div class="text-slate-400 text-sm mt-1">Procédés Agroalimentaires</div>
-                    </div>
-                </div>
-
-                <!-- ITEM 5: STAGE SAUR - ANALYSE D'EAU & RECHERCHE FUITES (PROJET/NORMES) -->
-                <div class="timeline-item category-project category-norm mb-12 flex flex-col md:flex-row items-center w-full">
-                    <div class="md:hidden flex items-center self-start mb-2 ml-10">
-                        <span class="text-xs font-bold px-2.5 py-1 rounded bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">Stage Entreprise</span>
-                    </div>
-
-                    <div class="hidden md:block w-1/2 pr-8 text-right">
-                        <span class="text-xs font-bold px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 inline-block">SAUR — Eau & Environnement</span>
-                        <div class="text-slate-400 text-sm mt-1">Stage Technicien</div>
-                    </div>
-
-                    <div class="z-20 flex items-center order-1 bg-slate-950 w-8 h-8 rounded-full border-2 border-emerald-400 shadow-[0_0_15px_rgba(16,185,129,0.8)] self-start md:self-center">
-                        <div class="w-3 h-3 mx-auto bg-emerald-400 rounded-full"></div>
-                    </div>
-
-                    <div class="order-1 md:w-1/2 pl-10 md:pl-8 w-full -mt-8 md:mt-0">
-                        <div class="timeline-card bg-slate-900/90 p-6 rounded-2xl border border-emerald-500/30 hover:border-emerald-500/70 shadow-lg shadow-emerald-500/5 group">
-                            <div class="flex items-center justify-between mb-2">
-                                <span class="px-2.5 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-norm-bg text-emerald-400 border border-emerald-500/20">Stage & Analyses</span>
-                                <span class="text-xs text-slate-400 font-mono">Qualité Eau</span>
-                            </div>
-                            <h3 class="text-xl font-bold text-white group-hover:text-emerald-400 transition-colors">Stage Entreprise — SAUR</h3>
-                            <p class="text-xs text-emerald-300 font-medium mb-3">Analyse d'Eau & Détection de Fuites</p>
-                            <ul class="text-slate-300 text-sm space-y-2 list-disc list-inside marker:text-emerald-400">
-                                <li>Prélèvements et analyses physico-chimiques de la qualité de l'eau potable.</li>
-                                <li>Contrôle de conformité sanitaire selon la réglementation en vigueur.</li>
-                                <li>Campagnes de recherche sur le réseau et diagnostic des pertes d'eau.</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- ITEM 6: BAC PRO PIPAC (ÉTUDES) -->
-                <div class="timeline-item category-edu mb-6 flex flex-col md:flex-row items-center w-full">
-                    <div class="md:hidden flex items-center self-start mb-2 ml-10">
-                        <span class="text-xs font-bold px-2.5 py-1 rounded bg-amber-500/20 text-amber-400 border border-amber-500/30">2022 — 2026</span>
-                    </div>
-
-                    <div class="order-1 md:w-1/2 pr-0 md:pr-8 pl-10 md:pl-0 w-full -mt-8 md:mt-0 md:text-right">
-                        <div class="timeline-card bg-slate-900/90 p-6 rounded-2xl border border-amber-500/30 hover:border-amber-500/70 shadow-lg shadow-amber-500/5 group">
-                            <div class="flex items-center justify-between mb-2 md:flex-row-reverse">
-                                <span class="px-2.5 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-edu-bg text-amber-400 border border-amber-500/20">Diplôme National</span>
-                                <span class="text-xs text-slate-400 font-mono">2022 - 2026</span>
-                            </div>
-                            <h3 class="text-xl font-bold text-white group-hover:text-amber-400 transition-colors">Bac Pro PIPAC</h3>
-                            <p class="text-xs text-amber-300 font-medium mb-3">Procédés de l'Industrie Plastique, Agroalimentaire & Chimique</p>
-                            <p class="text-slate-300 text-sm leading-relaxed">
-                                Solides bases techniques sur la conduite de lignes automatisées, le contrôle qualité en cours de fabrication et les règles fondamentales d'hygiène industrielle.
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="z-20 flex items-center order-1 bg-slate-950 w-8 h-8 rounded-full border-2 border-edu shadow-[0_0_15px_rgba(245,158,11,0.8)] self-start md:self-center">
-                        <div class="w-3 h-3 mx-auto bg-edu rounded-full"></div>
-                    </div>
-
-                    <div class="hidden md:block w-1/2 pl-8 text-left">
-                        <span class="text-xs font-bold px-3 py-1 rounded-full bg-amber-500/10 text-amber-400 border border-amber-500/30 inline-block">Formation Secondaire</span>
-                        <div class="text-slate-400 text-sm mt-1">Bases industrielles</div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="py-16 bg-slate-900/50 border-t border-slate-800">
-        <div class="max-w-3xl mx-auto px-4 text-center">
-            <h2 class="text-2xl sm:text-3xl font-bold text-white mb-4">Un projet ou une opportunité à discuter ?</h2>
-            <p class="text-slate-400 text-sm sm:text-base mb-8 max-w-xl mx-auto">
-                Étudiant motivé et rigoureux en BTS Bioqualité à Nîmes, je suis à votre disposition pour apporter mes compétences en contrôle qualité et procédés agroalimentaires.
+    <main class="container">
+        <!-- Hero Section -->
+        <section class="hero" id="about">
+            <span class="badge">Étudiant BTS Bioqualité — 19 ans</span>
+            <h1>Spécialiste de la conformité et du contrôle qualité agroalimentaire</h1>
+            <p class="subtitle">
+                Mon parcours combine la production agroalimentaire, la maîtrise de l'eau et le contrôle qualité strict en entreprise.
             </p>
-            
-            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <a href="mailto:martin.lombard@email.com" class="w-full sm:w-auto px-6 py-3 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-sm transition-all shadow-lg shadow-emerald-500/20">
-                    Envoyer un E-mail
-                </a>
-                <button onclick="copyToClipboard('martin.lombard@email.com')" class="w-full sm:w-auto px-6 py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 font-medium text-sm transition-all">
-                    Copier l'e-mail
-                </button>
-            </div>
-            
-            <!-- Toast notification -->
-            <div id="toast" class="hidden fixed bottom-6 right-6 bg-emerald-500 text-slate-950 px-4 py-2 rounded-lg font-bold text-xs shadow-2xl transition-all">
-                Adresse email copiée !
-            </div>
-        </div>
-    </section>
+            <div class="location">📍 Nîmes, France</div>
+        </section>
 
-    <!-- Footer -->
-    <footer class="py-8 border-t border-slate-900 text-center text-xs text-slate-400">
-        <p>© 2026 Martin Lombard — Portfolio BTS Bioqualité, Nîmes.</p>
-    </footer>
+        <!-- Timeline Section -->
+        <section id="timeline">
+            <h2>Parcours Chronologique</h2>
+
+            <!-- Filtres -->
+            <div class="filter-container">
+                <button class="filter-btn active" data-filter="all">Tous</button>
+                <button class="filter-btn" data-filter="projet">Projets</button>
+                <button class="filter-btn" data-filter="norme">Normes & Qualité</button>
+                <button class="filter-btn" data-filter="etudes">Études</button>
+            </div>
+
+            <!-- Légende des couleurs -->
+            <div class="legend">
+                <div class="legend-item">
+                    <div class="legend-dot" style="background-color: var(--color-projet);"></div>
+                    Projets
+                </div>
+                <div class="legend-item">
+                    <div class="legend-dot" style="background-color: var(--color-norme);"></div>
+                    Normes & Qualité
+                </div>
+                <div class="legend-item">
+                    <div class="legend-dot" style="background-color: var(--color-etudes);"></div>
+                    Études / Formation
+                </div>
+            </div>
+
+            <!-- Conteneur Timeline -->
+            <div class="timeline-section">
+                <div class="timeline-line"></div>
+
+                <!-- 1. BTS Bioqualité & Huile Cauvin (Normes/Qualité + Projet) -->
+                <div class="timeline-item type-norme" data-category="norme">
+                    <div class="timeline-dot"></div>
+                    <div class="card">
+                        <img src="img/portfoliot huile cauvin.jpg" alt="Production et contrôle Huile Cauvin" class="card-image" onerror="this.style.display='none'">
+                        <div class="card-content">
+                            <span class="card-tag">Normes & Qualité</span>
+                            <div class="card-header">
+                                <div>
+                                    <div class="card-title">Technicien Qualité (Alternance)</div>
+                                    <div class="card-company">Huile Cauvin — Production d'huile d'olive</div>
+                                </div>
+                                <div class="card-date">2026 (En cours)</div>
+                            </div>
+                            <div class="card-body">
+                                <ul>
+                                    <li>Analyse de la matière première dès la réception.</li>
+                                    <li>Vérification de la conformité des produits finis selon les normes strictes.</li>
+                                    <li>Gestion et suivi opérationnel des non-conformités en cours de production.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. BTS Bioqualité (Études) -->
+                <div class="timeline-item type-etudes" data-category="etudes">
+                    <div class="timeline-dot"></div>
+                    <div class="card">
+                        <div class="card-content">
+                            <span class="card-tag">Études</span>
+                            <div class="card-header">
+                                <div>
+                                    <div class="card-title">BTS Bioqualité (2 ans)</div>
+                                    <div class="card-company">Formation en Alternance</div>
+                                </div>
+                                <div class="card-date">En cours</div>
+                            </div>
+                            <div class="card-body">
+                                <ul>
+                                    <li>Maîtrise des bio-industries, de la qualité, de la sécurité alimentaire et de l'environnement.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. Bac Pro PIPAC (Études) -->
+                <div class="timeline-item type-etudes" data-category="etudes">
+                    <div class="timeline-dot"></div>
+                    <div class="card">
+                        <div class="card-content">
+                            <span class="card-tag">Études</span>
+                            <div class="card-header">
+                                <div>
+                                    <div class="card-title">Bac Pro PIPAC</div>
+                                    <div class="card-company">Procédés de la Maîtrise de l'Eau et des Nuisances</div>
+                                </div>
+                                <div class="card-date">2022 — 2026</div>
+                            </div>
+                            <div class="card-body">
+                                <ul>
+                                    <li>Formation théorique et pratique aux procédés industriels et au traitement de l'eau.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4. Stage Saur (Projet + Normes) -->
+                <div class="timeline-item type-projet" data-category="projet">
+                    <div class="timeline-dot"></div>
+                    <div class="card">
+                        <img src="img/saur.png" alt="Analyse d'eau et recherche de fuites Saur" class="card-image" onerror="this.style.display='none'">
+                        <div class="card-content">
+                            <span class="card-tag">Projet / Stage</span>
+                            <div class="card-header">
+                                <div>
+                                    <div class="card-title">Stage Analyse d'Eau & Recherche de Fuites</div>
+                                    <div class="card-company">Saur</div>
+                                </div>
+                                <div class="card-date">Stage</div>
+                            </div>
+                            <div class="card-body">
+                                <ul>
+                                    <li>Réalisation de prélèvements et d'analyses physico-chimiques sur la qualité de l'eau.</li>
+                                    <li>Projet de recherche et de détection de fuites sur le réseau potable.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 5. Projet Pâtes Fraîches (Projet) -->
+                <div class="timeline-item type-projet" data-category="projet">
+                    <div class="timeline-dot"></div>
+                    <div class="card">
+                        <img src="img/portfoliot pates fraiches.jpg" alt="Production de pâtes fraîches maison" class="card-image" onerror="this.style.display='none'">
+                        <div class="card-content">
+                            <span class="card-tag">Projet</span>
+                            <div class="card-header">
+                                <div>
+                                    <div class="card-title">Production de Pâtes Fraîches Maison</div>
+                                    <div class="card-company">Projet de Fabrication Artisanale</div>
+                                </div>
+                                <div class="card-date">Projet</div>
+                            </div>
+                            <div class="card-body">
+                                <ul>
+                                    <li>Élaboration de recettes de pâtes italiennes traditionnelles maison.</li>
+                                    <li>Maîtrise de la chaîne de fabrication et du dosage des ingrédients.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 6. Jus Exotiques Guyane (Projet) -->
+                <div class="timeline-item type-projet" data-category="projet">
+                    <div class="timeline-dot"></div>
+                    <div class="card">
+                        <img src="img/portfoliot guyane.jfif" alt="Production de jus exotiques en Guyane" class="card-image" onerror="this.style.display='none'">
+                        <div class="card-content">
+                            <span class="card-tag">Projet</span>
+                            <div class="card-header">
+                                <div>
+                                    <div class="card-title">Production de Jus Locaux & Exotiques</div>
+                                    <div class="card-company">Pôle Agroalimentaire de l'Ouest Guyanais</div>
+                                </div>
+                                <div class="card-date">Projet</div>
+                            </div>
+                            <div class="card-body">
+                                <ul>
+                                    <li>Transformation et extraction de fruits locaux (mangue, maracudja, papaye).</li>
+                                    <li>Conditionnement et contrôle des processus de conservation.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Compétences -->
+        <section id="skills">
+            <h2>Compétences Techniques</h2>
+            <div class="skills-grid">
+                <div class="skill-item">Analyse physico-chimique</div>
+                <div class="skill-item">Gestion des non-conformités</div>
+                <div class="skill-item">Contrôle matières premières</div>
+                <div class="skill-item">Normes d'hygiène & Traçabilité</div>
+                <div class="skill-item">Transformation agroalimentaire</div>
+                <div class="skill-item">Analyse et traitement de l'eau</div>
+            </div>
+        </section>
+
+        <!-- Contact -->
+        <section id="contact">
+            <div class="contact-box">
+                <h2>Me Contacter</h2>
+                <p style="color: var(--text-muted);">Étudiant motivé à la recherche d'opportunités en contrôle qualité et bioqualité.</p>
+                <a href="mailto:martin.lombard@email.com" class="btn">Envoyer un e-mail</a>
+            </div>
+        </section>
+    </main>
 
     <script>
-        // Interactive Filtering System for Timeline Categories
-        function filterTimeline(category) {
-            const items = document.querySelectorAll('.timeline-item');
-            const buttons = document.querySelectorAll('.filter-btn');
+        // Logique des filtres de la timeline
+        document.addEventListener('DOMContentLoaded', () => {
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const timelineItems = document.querySelectorAll('.timeline-item');
 
-            // Reset active button state
-            buttons.forEach(btn => {
-                btn.classList.remove('active', 'ring-2', 'ring-white/20');
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    // Retirer la classe active de tous les boutons
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+
+                    const filter = btn.getAttribute('data-filter');
+
+                    timelineItems.forEach(item => {
+                        if (filter === 'all' || item.getAttribute('data-category') === filter) {
+                            item.classList.remove('hidden');
+                        } else {
+                            item.classList.add('hidden');
+                        }
+                    });
+                });
             });
-
-            // Set active state on clicked button
-            const activeBtn = document.getElementById(`btn-${category}`);
-            if (activeBtn) {
-                activeBtn.classList.add('active', 'ring-2', 'ring-white/20');
-            }
-
-            // Filter Timeline Items
-            items.forEach(item => {
-                if (category === 'all') {
-                    item.style.display = 'flex';
-                    setTimeout(() => {
-                        item.style.opacity = '1';
-                        item.style.transform = 'translateY(0)';
-                    }, 50);
-                } else {
-                    if (item.classList.contains(`category-${category}`)) {
-                        item.style.display = 'flex';
-                        setTimeout(() => {
-                            item.style.opacity = '1';
-                            item.style.transform = 'translateY(0)';
-                        }, 50);
-                    } else {
-                        item.style.opacity = '0';
-                        item.style.transform = 'translateY(10px)';
-                        setTimeout(() => {
-                            item.style.display = 'none';
-                        }, 200);
-                    }
-                }
-            });
-        }
-
-        // Clipboard Copy Helper Function
-        function copyToClipboard(text) {
-            const tempInput = document.createElement('input');
-            tempInput.value = text;
-            document.body.appendChild(tempInput);
-            tempInput.select();
-            document.execCommand('copy');
-            document.body.removeChild(tempInput);
-
-            const toast = document.getElementById('toast');
-            toast.classList.remove('hidden');
-            setTimeout(() => {
-                toast.classList.add('hidden');
-            }, 2500);
-        }
+        });
     </script>
 </body>
 </html>
