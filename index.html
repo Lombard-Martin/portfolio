@@ -27,8 +27,6 @@
             --card-pates-badge: #854d0e;
             --card-guyane-border: #ef4444; /* Rouge */
             --card-guyane-badge: #991b1b;
-            --card-etudes-border: #f59e0b; /* Orange/Ambre */
-            --card-etudes-badge: #78350f;
         }
 
         * {
@@ -260,7 +258,7 @@
             flex: 1;
         }
 
-        /* Zone d'image/illustration à droite */
+        /* Zone d'image à droite */
         .card-image-wrapper {
             position: relative;
             width: 220px;
@@ -284,28 +282,6 @@
             border-radius: 8px;
         }
 
-        /* Zone d'illustration pour les études */
-        .card-school-illustration {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            color: #fbbf24;
-            text-align: center;
-            padding: 10px;
-        }
-
-        .card-school-illustration svg {
-            filter: drop-shadow(0 2px 8px rgba(245, 158, 11, 0.3));
-        }
-
-        .card-school-illustration span {
-            font-size: 0.8rem;
-            font-weight: 600;
-            color: #fde68a;
-        }
-
         /* Badges / Décorations autour de l'image */
         .img-decoration {
             position: absolute;
@@ -325,9 +301,7 @@
         }
 
         .card-tag {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
+            display: inline-block;
             padding: 2px 10px;
             border-radius: 4px;
             font-size: 0.75rem;
@@ -340,34 +314,73 @@
         /* --- COULEURS SPÉCIFIQUES --- */
         
         /* 1. Huile Cauvin (Vert foncé) */
-        .card-huile { border-color: var(--card-huile-border); }
-        .card-huile .timeline-dot { border-color: var(--card-huile-border); }
-        .card-huile .card-tag { background-color: var(--card-huile-badge); color: #4ade80; }
-        .card-huile .img-decoration { border-color: var(--card-huile-border); color: #4ade80; }
+        .card-huile {
+            border-color: var(--card-huile-border);
+        }
+        .card-huile .timeline-dot {
+            border-color: var(--card-huile-border);
+        }
+        .card-huile .card-tag {
+            background-color: var(--card-huile-badge);
+            color: #4ade80;
+        }
+        .card-huile .img-decoration {
+            border-color: var(--card-huile-border);
+            color: #4ade80;
+        }
 
         /* 2. Saur (Bleu Eau) */
-        .card-saur { border-color: var(--card-saur-border); }
-        .card-saur .timeline-dot { border-color: var(--card-saur-border); }
-        .card-saur .card-tag { background-color: var(--card-saur-badge); color: #60a5fa; }
-        .card-saur .img-decoration { border-color: var(--card-saur-border); color: #60a5fa; }
+        .card-saur {
+            border-color: var(--card-saur-border);
+        }
+        .card-saur .timeline-dot {
+            border-color: var(--card-saur-border);
+        }
+        .card-saur .card-tag {
+            background-color: var(--card-saur-badge);
+            color: #60a5fa;
+        }
+        .card-saur .img-decoration {
+            border-color: var(--card-saur-border);
+            color: #60a5fa;
+        }
 
         /* 3. Pâtes Fraîches (Jaune) */
-        .card-pates { border-color: var(--card-pates-border); }
-        .card-pates .timeline-dot { border-color: var(--card-pates-border); }
-        .card-pates .card-tag { background-color: var(--card-pates-badge); color: #fde047; }
-        .card-pates .img-decoration { border-color: var(--card-pates-border); color: #fde047; }
+        .card-pates {
+            border-color: var(--card-pates-border);
+        }
+        .card-pates .timeline-dot {
+            border-color: var(--card-pates-border);
+        }
+        .card-pates .card-tag {
+            background-color: var(--card-pates-badge);
+            color: #fde047;
+        }
+        .card-pates .img-decoration {
+            border-color: var(--card-pates-border);
+            color: #fde047;
+        }
 
         /* 4. Jus Locaux Guyane (Rouge) */
-        .card-guyane { border-color: var(--card-guyane-border); }
-        .card-guyane .timeline-dot { border-color: var(--card-guyane-border); }
-        .card-guyane .card-tag { background-color: var(--card-guyane-badge); color: #fca5a5; }
-        .card-guyane .img-decoration { border-color: var(--card-guyane-border); color: #fca5a5; }
+        .card-guyane {
+            border-color: var(--card-guyane-border);
+        }
+        .card-guyane .timeline-dot {
+            border-color: var(--card-guyane-border);
+        }
+        .card-guyane .card-tag {
+            background-color: var(--card-guyane-badge);
+            color: #fca5a5;
+        }
+        .card-guyane .img-decoration {
+            border-color: var(--card-guyane-border);
+            color: #fca5a5;
+        }
 
-        /* Cartes Études / Formation (Ambre) */
-        .type-etudes .card { border-color: var(--card-etudes-border); }
-        .type-etudes .timeline-dot { border-color: var(--card-etudes-border); }
-        .type-etudes .card-tag { background-color: var(--card-etudes-badge); color: #fbbf24; }
-        .type-etudes .img-decoration { border-color: var(--card-etudes-border); color: #fbbf24; }
+        /* Cartes Études Générales */
+        .type-etudes .timeline-dot { border-color: var(--color-etudes); }
+        .type-etudes .card-tag { background: rgba(245, 158, 11, 0.15); color: #fbbf24; }
+        .type-etudes:hover .card { border-color: var(--color-etudes); }
 
         .card-header {
             display: flex;
@@ -580,14 +593,12 @@
                     </div>
                 </div>
 
-                <!-- 2. BTS Bioqualité (ÉTUDES) -->
+                <!-- 2. BTS Bioqualité -->
                 <div class="timeline-item type-etudes" data-category="etudes">
                     <div class="timeline-dot"></div>
                     <div class="card">
                         <div class="card-content">
-                            <span class="card-tag">
-                                📖 Études / Formation
-                            </span>
+                            <span class="card-tag">Études</span>
                             <div class="card-header">
                                 <div>
                                     <div class="card-title">BTS Bioqualité</div>
@@ -601,29 +612,15 @@
                                 </ul>
                             </div>
                         </div>
-                        <div class="card-image-wrapper">
-                            <div class="img-decoration">✏️ Parcours Scolaire</div>
-                            <div class="card-school-illustration">
-                                <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
-                                    <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
-                                    <line x1="9" y1="7" x2="15" y2="7"/>
-                                    <line x1="9" y1="11" x2="15" y2="11"/>
-                                </svg>
-                                <span>Cahier d'Études BTS</span>
-                            </div>
-                        </div>
                     </div>
                 </div>
 
-                <!-- 3. Bac Pro PIPAC (ÉTUDES) -->
+                <!-- 3. Bac Pro PIPAC -->
                 <div class="timeline-item type-etudes" data-category="etudes">
                     <div class="timeline-dot"></div>
                     <div class="card">
                         <div class="card-content">
-                            <span class="card-tag">
-                                📖 Études / Formation
-                            </span>
+                            <span class="card-tag">Études</span>
                             <div class="card-header">
                                 <div>
                                     <div class="card-title">Bac Pro PIPAC</div>
@@ -635,16 +632,6 @@
                                 <ul>
                                     <li>Formation aux procédés industriels, traitement de l'eau et hygiène.</li>
                                 </ul>
-                            </div>
-                        </div>
-                        <div class="card-image-wrapper">
-                            <div class="img-decoration">🎓 Diplôme & Cahier</div>
-                            <div class="card-school-illustration">
-                                <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
-                                    <path d="M6 12v5c3 3 9 3 12 0v-5"/>
-                                </svg>
-                                <span>Formation Bac Pro</span>
                             </div>
                         </div>
                     </div>
