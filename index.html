@@ -233,4 +233,540 @@
             height: 20px;
             border-radius: 50%;
             background-color: var(--bg-color);
-            border: 3px solid #
+            border: 3px solid #fff;
+            z-index: 2;
+        }
+
+        /* Carte de contenu */
+        .card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+        }
+
+        .card-content {
+            padding: 24px;
+            flex: 1;
+        }
+
+        /* Zone d'image à droite */
+        .card-image-wrapper {
+            position: relative;
+            width: 220px;
+            min-width: 220px;
+            height: 100%;
+            min-height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(0, 0, 0, 0.25);
+            border-left: 1px solid var(--border);
+            padding: 12px;
+        }
+
+        .card-image {
+            max-width: 100%;
+            max-height: 150px;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+
+        /* Badges / Décorations autour de l'image */
+        .img-decoration {
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            background-color: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 4px 10px;
+            font-size: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+            z-index: 5;
+            font-weight: 600;
+        }
+
+        .card-tag {
+            display: inline-block;
+            padding: 2px 10px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+
+        /* --- COULEURS SPÉCIFIQUES --- */
+        
+        /* 1. Huile Cauvin (Vert foncé) */
+        .card-huile {
+            border-color: var(--card-huile-border);
+        }
+        .card-huile .timeline-dot {
+            border-color: var(--card-huile-border);
+        }
+        .card-huile .card-tag {
+            background-color: var(--card-huile-badge);
+            color: #4ade80;
+        }
+        .card-huile .img-decoration {
+            border-color: var(--card-huile-border);
+            color: #4ade80;
+        }
+
+        /* 2. Saur (Bleu Eau) */
+        .card-saur {
+            border-color: var(--card-saur-border);
+        }
+        .card-saur .timeline-dot {
+            border-color: var(--card-saur-border);
+        }
+        .card-saur .card-tag {
+            background-color: var(--card-saur-badge);
+            color: #60a5fa;
+        }
+        .card-saur .img-decoration {
+            border-color: var(--card-saur-border);
+            color: #60a5fa;
+        }
+
+        /* 3. Pâtes Fraîches (Jaune) */
+        .card-pates {
+            border-color: var(--card-pates-border);
+        }
+        .card-pates .timeline-dot {
+            border-color: var(--card-pates-border);
+        }
+        .card-pates .card-tag {
+            background-color: var(--card-pates-badge);
+            color: #fde047;
+        }
+        .card-pates .img-decoration {
+            border-color: var(--card-pates-border);
+            color: #fde047;
+        }
+
+        /* 4. Jus Locaux Guyane (Rouge) */
+        .card-guyane {
+            border-color: var(--card-guyane-border);
+        }
+        .card-guyane .timeline-dot {
+            border-color: var(--card-guyane-border);
+        }
+        .card-guyane .card-tag {
+            background-color: var(--card-guyane-badge);
+            color: #fca5a5;
+        }
+        .card-guyane .img-decoration {
+            border-color: var(--card-guyane-border);
+            color: #fca5a5;
+        }
+
+        /* Cartes Études Générales */
+        .type-etudes .timeline-dot { border-color: var(--color-etudes); }
+        .type-etudes .card-tag { background: rgba(245, 158, 11, 0.15); color: #fbbf24; }
+        .type-etudes:hover .card { border-color: var(--color-etudes); }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .card-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .card-company {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        .card-date {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+
+        .card-body ul {
+            list-style: none;
+            padding-left: 0;
+            margin-top: 10px;
+        }
+
+        .card-body li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 6px;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .card-body li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        /* Skills */
+        section {
+            padding: 40px 0;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+        }
+
+        .skill-item {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border);
+            padding: 16px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        .contact-box {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 32px;
+            text-align: center;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--color-norme);
+            color: #000;
+            padding: 12px 24px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 16px;
+            transition: background-color 0.2s ease;
+        }
+
+        .btn:hover {
+            background-color: #059669;
+        }
+
+        /* Adaptabilité Mobile */
+        @media (max-width: 768px) {
+            .card {
+                flex-direction: column-reverse;
+            }
+            .card-image-wrapper {
+                width: 100%;
+                min-width: 100%;
+                height: 180px;
+                border-left: none;
+                border-bottom: 1px solid var(--border);
+            }
+            .img-decoration {
+                top: 10px;
+                left: 10px;
+            }
+            h1 { font-size: 2rem; }
+            .timeline-line { left: 15px; }
+            .timeline-dot { left: 6px; }
+            .timeline-item { padding-left: 40px; }
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">Martin <span>Lombard</span></div>
+                <ul class="nav-links">
+                    <li><a href="#about">À propos</a></li>
+                    <li><a href="#timeline">Parcours</a></li>
+                    <li><a href="#skills">Compétences</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Hero Section -->
+        <section class="hero" id="about">
+            <span class="badge">Étudiant BTS Bioqualité — 19 ans</span>
+            <h1>Spécialiste de la conformité et du contrôle qualité agroalimentaire</h1>
+            <p class="subtitle">
+                Mon parcours combine la production agroalimentaire, la maîtrise de l'eau et le contrôle qualité strict en entreprise.
+            </p>
+            <div class="location">📍 Nîmes, France</div>
+        </section>
+
+        <!-- Timeline Section -->
+        <section id="timeline">
+            <h2>Parcours Chronologique</h2>
+
+            <!-- Filtres -->
+            <div class="filter-container">
+                <button class="filter-btn active" data-filter="all">Tous</button>
+                <button class="filter-btn" data-filter="projet">Projets</button>
+                <button class="filter-btn" data-filter="norme">Normes & Qualité</button>
+                <button class="filter-btn" data-filter="etudes">Études</button>
+            </div>
+
+            <!-- Légende des couleurs -->
+            <div class="legend">
+                <div class="legend-item">
+                    <div class="legend-dot" style="background-color: var(--color-projet);"></div>
+                    Projets
+                </div>
+                <div class="legend-item">
+                    <div class="legend-dot" style="background-color: var(--color-norme);"></div>
+                    Normes & Qualité
+                </div>
+                <div class="legend-item">
+                    <div class="legend-dot" style="background-color: var(--color-etudes);"></div>
+                    Études / Formation
+                </div>
+            </div>
+
+            <!-- Conteneur Timeline -->
+            <div class="timeline-section">
+                <div class="timeline-line"></div>
+
+                <!-- 1. Huile Cauvin (VERT FONCÉ) -->
+                <div class="timeline-item type-norme card-huile" data-category="norme">
+                    <div class="timeline-dot"></div>
+                    <div class="card">
+                        <div class="card-content">
+                            <span class="card-tag">Normes & Qualité</span>
+                            <div class="card-header">
+                                <div>
+                                    <div class="card-title">Technicien Qualité (Alternance)</div>
+                                    <div class="card-company">Huile Cauvin — Production d'huile d'olive</div>
+                                </div>
+                                <div class="card-date">2026 (En cours)</div>
+                            </div>
+                            <div class="card-body">
+                                <ul>
+                                    <li>Analyse de la matière première à la réception.</li>
+                                    <li>Vérification de la conformité du produit fini.</li>
+                                    <li>Gestion et suivi des non-conformités de production.</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="card-image-wrapper">
+                            <div class="img-decoration">🫒 Olives & Qualité</div>
+                            <img src="img/image portfoliot huile cauvin.jpg" alt="Huile Cauvin" class="card-image" onerror="this.parentElement.style.display='none'">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. BTS Bioqualité -->
+                <div class="timeline-item type-etudes" data-category="etudes">
+                    <div class="timeline-dot"></div>
+                    <div class="card">
+                        <div class="card-content">
+                            <span class="card-tag">Études</span>
+                            <div class="card-header">
+                                <div>
+                                    <div class="card-title">BTS Bioqualité</div>
+                                    <div class="card-company">Formation en Alternance (2 ans)</div>
+                                </div>
+                                <div class="card-date">En cours</div>
+                            </div>
+                            <div class="card-body">
+                                <ul>
+                                    <li>Compétences en management de la qualité, sécurité sanitaire et environnement.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. Bac Pro PIPAC -->
+                <div class="timeline-item type-etudes" data-category="etudes">
+                    <div class="timeline-dot"></div>
+                    <div class="card">
+                        <div class="card-content">
+                            <span class="card-tag">Études</span>
+                            <div class="card-header">
+                                <div>
+                                    <div class="card-title">Bac Pro PIPAC</div>
+                                    <div class="card-company">Procédés de la Maîtrise de l'Eau et des Nuisances</div>
+                                </div>
+                                <div class="card-date">2022 — 2026</div>
+                            </div>
+                            <div class="card-body">
+                                <ul>
+                                    <li>Formation aux procédés industriels, traitement de l'eau et hygiène.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4. Stage Saur (BLEU) -->
+                <div class="timeline-item type-projet card-saur" data-category="projet">
+                    <div class="timeline-dot"></div>
+                    <div class="card">
+                        <div class="card-content">
+                            <span class="card-tag">Projet / Stage</span>
+                            <div class="card-header">
+                                <div>
+                                    <div class="card-title">Stage Analyse d'Eau & Recherche de Fuites</div>
+                                    <div class="card-company">Saur</div>
+                                </div>
+                                <div class="card-date">Stage</div>
+                            </div>
+                            <div class="card-body">
+                                <ul>
+                                    <li>Analyses physico-chimiques sur la qualité de l'eau.</li>
+                                    <li>Recherche et détection de fuites sur réseau potable.</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="card-image-wrapper">
+                            <div class="img-decoration">🧪 Eau & Analyses</div>
+                            <img src="img/images saur.png" alt="Analyse d'eau Saur" class="card-image" onerror="this.parentElement.style.display='none'">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 5. Pâtes Fraîches (JAUNE) -->
+                <div class="timeline-item type-projet card-pates" data-category="projet">
+                    <div class="timeline-dot"></div>
+                    <div class="card">
+                        <div class="card-content">
+                            <span class="card-tag">Projet</span>
+                            <div class="card-header">
+                                <div>
+                                    <div class="card-title">Production de Pâtes Fraîches Maison</div>
+                                    <div class="card-company">Projet de Fabrication Artisanale</div>
+                                </div>
+                                <div class="card-date">Projet</div>
+                            </div>
+                            <div class="card-body">
+                                <ul>
+                                    <li>Élaboration et fabrication de pâtes fraîches italiennes maison.</li>
+                                    <li>Respect du process de fabrication et de dosage.</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="card-image-wrapper">
+                            <div class="img-decoration">🍝 Pâtes Artisanales</div>
+                            <img src="img/image portfoliot pates fraiches.jpg" alt="Pâtes fraîches" class="card-image" onerror="this.parentElement.style.display='none'">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 6. Jus Exotiques Guyane (ROUGE) -->
+                <div class="timeline-item type-projet card-guyane" data-category="projet">
+                    <div class="timeline-dot"></div>
+                    <div class="card">
+                        <div class="card-content">
+                            <span class="card-tag">Projet</span>
+                            <div class="card-header">
+                                <div>
+                                    <div class="card-title">Production Agroalimentaire de Jus Locaux</div>
+                                    <div class="card-company">Pôle Agroalimentaire de l'Ouest Guyanais</div>
+                                </div>
+                                <div class="card-date">Projet</div>
+                            </div>
+                            <div class="card-body">
+                                <ul>
+                                    <li>Transformation et extraction de fruits locaux (mangue, maracudja, papaye).</li>
+                                    <li>Contrôle de la conservation et conditionnement.</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="card-image-wrapper">
+                            <div class="img-decoration">🥭 Fruits Exotiques</div>
+                            <img src="img/images portfoliot guyane.jfif" alt="Jus exotiques Guyane" class="card-image" onerror="this.parentElement.style.display='none'">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Compétences -->
+        <section id="skills">
+            <h2>Compétences Techniques</h2>
+            <div class="skills-grid">
+                <div class="skill-item">Analyse physico-chimique</div>
+                <div class="skill-item">Gestion des non-conformités</div>
+                <div class="skill-item">Contrôle matières premières</div>
+                <div class="skill-item">Normes d'hygiène & Traçabilité</div>
+                <div class="skill-item">Transformation agroalimentaire</div>
+                <div class="skill-item">Analyse de l'eau</div>
+            </div>
+        </section>
+
+        <!-- Contact -->
+        <section id="contact">
+            <div class="contact-box">
+                <h2>Me Contacter</h2>
+                <p style="color: var(--text-muted);">Étudiant motivé à la recherche d'opportunités en contrôle qualité et bioqualité.</p>
+                <a href="mailto:martin.lombard@email.com" class="btn">Envoyer un e-mail</a>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Logique de filtrage de la timeline
+        document.addEventListener('DOMContentLoaded', () => {
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const timelineItems = document.querySelectorAll('.timeline-item');
+
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+
+                    const filter = btn.getAttribute('data-filter');
+
+                    timelineItems.forEach(item => {
+                        if (filter === 'all' || item.getAttribute('data-category') === filter) {
+                            item.classList.remove('hidden');
+                        } else {
+                            item.classList.add('hidden');
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
