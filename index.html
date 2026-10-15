@@ -13,20 +13,10 @@
             --border: #334155;
             --font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             
-            /* Codes Couleurs Globaux */
+            /* Codes Couleurs */
             --color-projet: #3b82f6;       /* Bleu */
             --color-norme: #10b981;        /* Émeraude */
             --color-etudes: #f59e0b;       /* Ambre/Orange */
-
-            /* Couleurs Spécifiques par Carte */
-            --card-huile-border: #15803d;  /* Vert foncé */
-            --card-huile-badge: #14532d;
-            --card-saur-border: #2563eb;   /* Bleu Eau */
-            --card-saur-badge: #1e3a8a;
-            --card-pates-border: #eab308;  /* Jaune */
-            --card-pates-badge: #854d0e;
-            --card-guyane-border: #ef4444; /* Rouge */
-            --card-guyane-badge: #991b1b;
         }
 
         * {
@@ -237,7 +227,7 @@
             z-index: 2;
         }
 
-        /* Carte de contenu */
+        /* Carte de contenu avec disposition horizontale */
         .card {
             background-color: var(--card-bg);
             border: 1px solid var(--border);
@@ -260,7 +250,6 @@
 
         /* Zone d'image à droite */
         .card-image-wrapper {
-            position: relative;
             width: 220px;
             min-width: 220px;
             height: 100%;
@@ -268,41 +257,26 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background-color: rgba(0, 0, 0, 0.25);
+            background-color: rgba(0, 0, 0, 0.2);
             border-left: 1px solid var(--border);
-            padding: 12px;
+            padding: 10px;
         }
 
         .card-image {
             max-width: 100%;
-            max-height: 150px;
+            max-height: 160px;
             width: auto;
             height: auto;
             object-fit: contain;
-            border-radius: 8px;
+            border-radius: 6px;
         }
 
-        /* Badges / Décorations autour de l'image */
-        .img-decoration {
-            position: absolute;
-            top: -10px;
-            left: -10px;
-            background-color: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: 20px;
-            padding: 4px 10px;
-            font-size: 0.75rem;
-            display: flex;
-            align-items: center;
-            gap: 4px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.4);
-            z-index: 5;
-            font-weight: 600;
-        }
-
+        /* Formes / Icônes à côté des badges */
         .card-tag {
-            display: inline-block;
-            padding: 2px 10px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 3px 10px;
             border-radius: 4px;
             font-size: 0.75rem;
             font-weight: 700;
@@ -311,73 +285,20 @@
             margin-bottom: 8px;
         }
 
-        /* --- COULEURS SPÉCIFIQUES --- */
-        
-        /* 1. Huile Cauvin (Vert foncé) */
-        .card-huile {
-            border-color: var(--card-huile-border);
-        }
-        .card-huile .timeline-dot {
-            border-color: var(--card-huile-border);
-        }
-        .card-huile .card-tag {
-            background-color: var(--card-huile-badge);
-            color: #4ade80;
-        }
-        .card-huile .img-decoration {
-            border-color: var(--card-huile-border);
-            color: #4ade80;
+        .icon-shape {
+            display: inline-block;
+            vertical-align: middle;
         }
 
-        /* 2. Saur (Bleu Eau) */
-        .card-saur {
-            border-color: var(--card-saur-border);
-        }
-        .card-saur .timeline-dot {
-            border-color: var(--card-saur-border);
-        }
-        .card-saur .card-tag {
-            background-color: var(--card-saur-badge);
-            color: #60a5fa;
-        }
-        .card-saur .img-decoration {
-            border-color: var(--card-saur-border);
-            color: #60a5fa;
-        }
+        /* Code Couleur par catégorie */
+        .type-projet .timeline-dot { border-color: var(--color-projet); }
+        .type-projet .card-tag { background: rgba(59, 130, 246, 0.15); color: #60a5fa; }
+        .type-projet:hover .card { border-color: var(--color-projet); }
 
-        /* 3. Pâtes Fraîches (Jaune) */
-        .card-pates {
-            border-color: var(--card-pates-border);
-        }
-        .card-pates .timeline-dot {
-            border-color: var(--card-pates-border);
-        }
-        .card-pates .card-tag {
-            background-color: var(--card-pates-badge);
-            color: #fde047;
-        }
-        .card-pates .img-decoration {
-            border-color: var(--card-pates-border);
-            color: #fde047;
-        }
+        .type-norme .timeline-dot { border-color: var(--color-norme); }
+        .type-norme .card-tag { background: rgba(16, 185, 129, 0.15); color: #34d399; }
+        .type-norme:hover .card { border-color: var(--color-norme); }
 
-        /* 4. Jus Locaux Guyane (Rouge) */
-        .card-guyane {
-            border-color: var(--card-guyane-border);
-        }
-        .card-guyane .timeline-dot {
-            border-color: var(--card-guyane-border);
-        }
-        .card-guyane .card-tag {
-            background-color: var(--card-guyane-badge);
-            color: #fca5a5;
-        }
-        .card-guyane .img-decoration {
-            border-color: var(--card-guyane-border);
-            color: #fca5a5;
-        }
-
-        /* Cartes Études Générales */
         .type-etudes .timeline-dot { border-color: var(--color-etudes); }
         .type-etudes .card-tag { background: rgba(245, 158, 11, 0.15); color: #fbbf24; }
         .type-etudes:hover .card { border-color: var(--color-etudes); }
@@ -494,10 +415,6 @@
                 border-left: none;
                 border-bottom: 1px solid var(--border);
             }
-            .img-decoration {
-                top: 10px;
-                left: 10px;
-            }
             h1 { font-size: 2rem; }
             .timeline-line { left: 15px; }
             .timeline-dot { left: 6px; }
@@ -565,12 +482,17 @@
             <div class="timeline-section">
                 <div class="timeline-line"></div>
 
-                <!-- 1. Huile Cauvin (VERT FONCÉ) -->
-                <div class="timeline-item type-norme card-huile" data-category="norme">
+                <!-- 1. Huile Cauvin (avec Olives SVG) -->
+                <div class="timeline-item type-norme" data-category="norme">
                     <div class="timeline-dot"></div>
                     <div class="card">
                         <div class="card-content">
-                            <span class="card-tag">Normes & Qualité</span>
+                            <span class="card-tag">
+                                Normes & Qualité
+                                <svg class="icon-shape" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12,3 C7.5,3 4,7 4,12 C4,16.5 7.5,21 12,21 C16.5,21 20,16.5 20,12 C20,7 16.5,3 12,3 Z M12,18 C9,18 7,15.5 7,12 C7,8.5 9,6 12,6 C15,6 17,8.5 17,12 C17,15.5 15,18 12,18 Z M14,2 C14,2 16,0 18,2 C20,4 18,6 18,6 L14,2 Z"/>
+                                </svg>
+                            </span>
                             <div class="card-header">
                                 <div>
                                     <div class="card-title">Technicien Qualité (Alternance)</div>
@@ -587,7 +509,6 @@
                             </div>
                         </div>
                         <div class="card-image-wrapper">
-                            <div class="img-decoration">🫒 Olives & Qualité</div>
                             <img src="img/image portfoliot huile cauvin.jpg" alt="Huile Cauvin" class="card-image" onerror="this.parentElement.style.display='none'">
                         </div>
                     </div>
@@ -637,12 +558,17 @@
                     </div>
                 </div>
 
-                <!-- 4. Stage Saur (BLEU) -->
-                <div class="timeline-item type-projet card-saur" data-category="projet">
+                <!-- 4. Stage Saur (avec Flacon / Échantillon SVG) -->
+                <div class="timeline-item type-projet" data-category="projet">
                     <div class="timeline-dot"></div>
                     <div class="card">
                         <div class="card-content">
-                            <span class="card-tag">Projet / Stage</span>
+                            <span class="card-tag">
+                                Projet / Stage
+                                <svg class="icon-shape" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M9 3v2h6V3H9zm-1 4h8v2H8V7zm-1 4h10l2 8H5l2-8zm3 2v4h2v-4h-2z"/>
+                                </svg>
+                            </span>
                             <div class="card-header">
                                 <div>
                                     <div class="card-title">Stage Analyse d'Eau & Recherche de Fuites</div>
@@ -658,18 +584,22 @@
                             </div>
                         </div>
                         <div class="card-image-wrapper">
-                            <div class="img-decoration">🧪 Eau & Analyses</div>
                             <img src="img/images saur.png" alt="Analyse d'eau Saur" class="card-image" onerror="this.parentElement.style.display='none'">
                         </div>
                     </div>
                 </div>
 
-                <!-- 5. Pâtes Fraîches (JAUNE) -->
-                <div class="timeline-item type-projet card-pates" data-category="projet">
+                <!-- 5. Pâtes Fraîches (avec Pâtes SVG) -->
+                <div class="timeline-item type-projet" data-category="projet">
                     <div class="timeline-dot"></div>
                     <div class="card">
                         <div class="card-content">
-                            <span class="card-tag">Projet</span>
+                            <span class="card-tag">
+                                Projet
+                                <svg class="icon-shape" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M4 4c0 4.42 3.58 8 8 8s8-3.58 8-8H4zm8 10c-4.42 0-8 3.58-8 8h16c0-4.42-3.58-8-8-8z"/>
+                                </svg>
+                            </span>
                             <div class="card-header">
                                 <div>
                                     <div class="card-title">Production de Pâtes Fraîches Maison</div>
@@ -685,18 +615,22 @@
                             </div>
                         </div>
                         <div class="card-image-wrapper">
-                            <div class="img-decoration">🍝 Pâtes Artisanales</div>
                             <img src="img/image portfoliot pates fraiches.jpg" alt="Pâtes fraîches" class="card-image" onerror="this.parentElement.style.display='none'">
                         </div>
                     </div>
                 </div>
 
-                <!-- 6. Jus Exotiques Guyane (ROUGE) -->
-                <div class="timeline-item type-projet card-guyane" data-category="projet">
+                <!-- 6. Jus Exotiques Guyane (avec Mangue SVG) -->
+                <div class="timeline-item type-projet" data-category="projet">
                     <div class="timeline-dot"></div>
                     <div class="card">
                         <div class="card-content">
-                            <span class="card-tag">Projet</span>
+                            <span class="card-tag">
+                                Projet
+                                <svg class="icon-shape" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 2C8 2 5 6 5 11c0 5 4 11 9 11 3.5 0 6-2.5 6-6 0-5-4-14-8-14zm2 16c-3 0-5-4-5-7 0-3 2-6 4-6s2 2 2 4c0 3-1 9-1 9z"/>
+                                </svg>
+                            </span>
                             <div class="card-header">
                                 <div>
                                     <div class="card-title">Production Agroalimentaire de Jus Locaux</div>
@@ -712,7 +646,6 @@
                             </div>
                         </div>
                         <div class="card-image-wrapper">
-                            <div class="img-decoration">🥭 Fruits Exotiques</div>
                             <img src="img/images portfoliot guyane.jfif" alt="Jus exotiques Guyane" class="card-image" onerror="this.parentElement.style.display='none'">
                         </div>
                     </div>
